@@ -1,15 +1,15 @@
 /**
- * I manage events
+ * I manage pictures
  */
 component singleton accessors="true"{
 
 	// Properties
-	property name="eventDao" inject="Events";
+	property name="pictureDao" inject="Pictures";
 
 	/**
 	 * Constructor
 	 */
-	EventsService function init(){
+	PicturesService function init(){
 
 		return this;
 	}
@@ -17,8 +17,8 @@ component singleton accessors="true"{
 	/**
 	 * save
 	 */
-	function save( rc ){
-		eventDao.saveEventData( rc );
+	function save(){
+
 	}
 
 	/**
@@ -32,7 +32,7 @@ component singleton accessors="true"{
 	 * list
 	 */
 	function list(){
-		return eventDao.getEventData();
+		return pictureDao.getPictures();
 	}
 
 	/**

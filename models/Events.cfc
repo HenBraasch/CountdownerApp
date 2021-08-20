@@ -23,5 +23,14 @@ component accessors="true"{
 		return query;
 	}
 
+	function saveEventData( eventData ){
+		query = qb.from('event')
+			.insert({
+				"title" = eventData.title,
+				"date" = eventData.date,
+				"picture_url" = eventData.picture_url
+			})
+	}
+
 
 }

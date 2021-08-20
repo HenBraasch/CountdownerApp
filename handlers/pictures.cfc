@@ -1,12 +1,11 @@
 /**
- * Manage events
+ * Manage pictures
  * It will be your responsibility to fine tune this template, add validations, try/catch blocks, logging, etc.
  */
 component extends="coldbox.system.EventHandler"{
 	
 	// DI 
-	property name="eventService" inject="EventsService";
-
+	property name="pictureService" inject="PicturesService";
 	// HTTP Method Security
 	this.allowedMethods = {
 		index  		= "GET", 
@@ -26,54 +25,49 @@ component extends="coldbox.system.EventHandler"{
 	}
 		
 	/**
-	 * Display a list of events
+	 * Display a list of pictures
 	 */
 	function index( event, rc, prc ){
-		prc.events = eventService.list();
+		// Get resources here
+
+		prc.events = pictureService.list();
 		return prc.events;
 	}
 
 	/**
-	 * Return an HTML form for creating one events
+	 * Return an HTML form for creating one pictures
 	 */
 	function new( event, rc, prc ){
-		// event.setView( "events/new" );
+		event.setView( "pictures/new" );
 	}
 
 	/**
-	 * Create a events
+	 * Create a pictures
 	 */
 	function create( event, rc, prc ){
-		var status_message = "Created a new event";
-
-		try {
-			eventService.save( rc );
-		} catch (any e) {
-			status_message = e.message
-		}
-		return status_message;
+		
 	}
 
 	/**
-	 * Show a events
+	 * Show a pictures
 	 */
 	function show( event, rc, prc ){
 		event.paramValue( "id", 0 );
 		
-		event.setView( "events/show" );
+		event.setView( "pictures/show" );
 	}
 
 	/**
-	 * Edit a events
+	 * Edit a pictures
 	 */
 	function edit( event, rc, prc ){
 		event.paramValue( "id", 0 );
 		
-		event.setView( "events/edit" );
+		event.setView( "pictures/edit" );
 	}
 
 	/**
-	 * Update a events
+	 * Update a pictures
 	 */
 	function update( event, rc, prc ){
 		event.paramValue( "id", 0 );
@@ -81,7 +75,7 @@ component extends="coldbox.system.EventHandler"{
 	}
 
 	/**
-	 * Delete a events
+	 * Delete a pictures
 	 */
 	function delete( event, rc, prc ){
 		event.paramValue( "id", 0 );

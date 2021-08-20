@@ -27,6 +27,7 @@ component {
 			};
 		} );
 		resources( resource="events" );
+		resources( resource="pictures" );
 		
 		// Conventions based routing
 		route( ":handler/:action?" ).end();
