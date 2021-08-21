@@ -1,4 +1,5 @@
 {
+    "name":"server",
     "web":{
         "rewrites":{
             "enable":"true"
