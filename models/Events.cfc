@@ -31,9 +31,9 @@ component accessors="true"{
 	function saveEventData( eventData ){
 		qb.from('event')
 			.insert({
-				"title" = eventData.title,
-				"date" = eventData.date,
-				"picture_url" = eventData.picture_url,
+				"title" = {value = eventData.title, cfsqltype = "CF_SQL_VARCHAR"},
+				"date" = {value = eventData.date, cfsqltype = "CF_SQL_DATE"},
+				"picture_url" = {value = eventData.picture_url, cfsqltype = "CF_SQL_VARCHAR"},
 				"created_at" = {value = now(), cfsqltype = "CF_SQL_TIMESTAMP"}
 			})
 	}
@@ -46,8 +46,8 @@ component accessors="true"{
 		qb.from('event')
 			.whereId( eventData.id )
 			.update({
-				"title" = Left(eventData.title,25),
-				"date"  = eventData.date,
+				"title" = {value = eventData.title, cfsqltype = "CF_SQL_VARCHAR"},
+				"date"  = {value = eventData.date, cfsqltype = "CF_SQL_DATE"},
 				"modified_at"= {value = now(), cfsqltype = "CF_SQL_TIMESTAMP"}
 			})
 	}
