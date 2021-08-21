@@ -52,4 +52,11 @@ component accessors="true"{
 			})
 	}
 
+
+	function deleteEvent( eventId ){
+		qb.from('event')
+			.where( "id", eventId)
+			.delete();
+	}
+
 }

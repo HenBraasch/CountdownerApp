@@ -24,15 +24,17 @@ component singleton accessors="true"{
 	/**
 	 * delete
 	 */
-	function delete(){
-
+	function delete( eventId ){
+		eventDao.deleteEvent( eventId );
 	}
 
 	/**
 	 * list
 	 */
 	function list(){
-		return eventDao.getEventData();
+
+		var events = eventDao.getEventData();
+		return events;
 	}
 
 	/**
