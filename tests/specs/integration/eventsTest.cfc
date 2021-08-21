@@ -39,10 +39,11 @@ component extends="coldbox.system.testing.BaseTestCase" appMapping="/"{
 				setup();
 			});
 
-			it( "index", function(){
+			it( "can render a list of events", function(){
 				var event = execute( event="events.index", renderResults=true );
-				// expectations go here.
-				expect( false ).toBeTrue();
+				
+				debug( event.getHandlerResults());
+				expect( event.getRenderedContent() ).toBeJSON();
 			});
 
 			it( "new", function(){
