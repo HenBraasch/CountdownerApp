@@ -41,6 +41,10 @@ component singleton accessors="true"{
 	function get(){
 
 	}
+	
+	function update( eventData ){
+		eventDao.updateEventTitle(eventData);
+	}
 
 
 }

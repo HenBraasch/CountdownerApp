@@ -76,8 +76,14 @@ component extends="coldbox.system.EventHandler"{
 	 * Update a events
 	 */
 	function update( event, rc, prc ){
-		event.paramValue( "id", 0 );
+		var status_message = "Event successfully updated";
+		try {
+			eventService.update( rc );
+		} catch (exType exName) {
+			status_message = e.message
+		}
 		
+		return status_message;
 	}
 
 	/**
