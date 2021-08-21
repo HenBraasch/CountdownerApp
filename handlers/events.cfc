@@ -29,8 +29,7 @@ component extends="coldbox.system.EventHandler"{
 	 * Display a list of events
 	 */
 	function index( event, rc, prc ){
-		prc.events = eventService.list();
-		return prc.events;
+		return eventService.list();
 	}
 
 	/**
@@ -79,7 +78,7 @@ component extends="coldbox.system.EventHandler"{
 		var status_message = "Event successfully updated";
 		try {
 			eventService.update( rc );
-		} catch (exType exName) {
+		} catch (any e) {
 			status_message = e.message
 		}
 		
@@ -90,8 +89,15 @@ component extends="coldbox.system.EventHandler"{
 	 * Delete a events
 	 */
 	function delete( event, rc, prc ){
-		event.paramValue( "id", 0 );
+
+		var status_message = "Event successfully deleted";
+		try {
+			eventService.delete( rc.id )
+		} catch (any e) {
+			status_message = e.message
+		}
 		
+		return status_message;
 	}
 	
 }
