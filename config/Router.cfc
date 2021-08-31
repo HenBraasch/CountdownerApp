@@ -14,6 +14,8 @@ component {
 		 *
 		 */
 
+		 resources( resource="registration", only="new,create" );
+
 		// A nice healthcheck route example
 		route( "/healthcheck", function( event, rc, prc ) {
 			return "Ok!";
