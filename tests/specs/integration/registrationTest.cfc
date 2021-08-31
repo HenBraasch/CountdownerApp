@@ -28,7 +28,7 @@ component extends="tests.resources.BaseIntegrationSpec" appMapping="/"{
 					"passwordConfirmation"	= "mypass1234"
 				});
 				
-				expect( event.getValue( "relocation_URI", "")).toBe( "/" );
+				expect( event.getValue( "relocation_URI", "")).toBe( "" );
 
 				var users = query.from( "users" ).get();
 				expect( users ).toBeArray();
