@@ -10,21 +10,26 @@ component extends="coldbox.system.testing.BaseTestCase" {
 
         if(!request.keyExists("migrationsRan")){
             migrationService.setMigrationsDirectory("/root/resources/database/migrations");
-            migrationService.setDatasource("countdowner");
             migrationService.runAllMigrations("down");
             migrationService.runAllMigrations("up");
             request.migrationsRan = true;
         }
     }
 
-    @aroundEach
+    /**
+     * All the integration tests we build will be automatically
+     * rolled back
+     * @aroundEach
+     */
     function wrapInTransaction(spec){
         transaction action="begin"{
-            arguments.spec.body();
-        } catch(any e){
-            rethrow;
-        } finally{
-            transaction action="rollback";
+            try{
+                arguments.spec.body();
+            } catch(any e){
+                rethrow;
+            } finally{
+                transaction action="rollback";
+            }
         }
     }
 }
