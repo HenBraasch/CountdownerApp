@@ -5,6 +5,7 @@ component{
 
 	//DI
 	property name="userService" inject="UserService";
+	property name="messageBox"  inject="messageBox@cbmessagebox";
 
 	// OPTIONAL HANDLER PROPERTIES
 	this.prehandler_only 	= "";
@@ -49,10 +50,8 @@ component{
 		//insert the user
 		var generatedKey = userService.create( rc.email, rc.username, rc.password );
 
-		flash.put( "notice", {
-			type: "success",
-			message: "The user #encodeForHTML( rc.username )# with id: #generatedKey# was successfully created."
-		})
+		messageBox.success( "The user #encodeForHTML( rc.username )# with id: #generatedKey# was successfully created." );
+
 		relocate( uri = "/" );
 	}
 
