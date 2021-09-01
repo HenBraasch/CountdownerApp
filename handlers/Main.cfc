@@ -1,31 +1,15 @@
 component extends="coldbox.system.EventHandler" {
 
+	property name="userService" inject="UserService";
 	/**
 	 * Default Action
 	 */
 	function index( event, rc, prc ) {
-		prc.welcomeMessage = "Welcome to ColdBox!";
-		event.setView( "main/index" );
+		prc.userList = userService.list();
+		prc.welcomeMessage = "Welcome to Countdowner!";
+		event.setView( "sessions/new" );
 	}
 
-	/**
-	 * Produce some restfulf data
-	 */
-	function data( event, rc, prc ) {
-		return [
-			{ "id" : createUUID(), name : "Luis" },
-			{ "id" : createUUID(), name : "JOe" },
-			{ "id" : createUUID(), name : "Bob" },
-			{ "id" : createUUID(), name : "Darth" }
-		];
-	}
-
-	/**
-	 * Relocation example
-	 */
-	function doSomething( event, rc, prc ) {
-		relocate( "main.index" );
-	}
 
 	/************************************** IMPLICIT ACTIONS *********************************************/
 
