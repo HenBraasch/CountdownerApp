@@ -137,7 +137,11 @@ component {
 		 *
 		 * }
 		 */
-		moduleSettings = {};
+		moduleSettings = {
+			"cbauth" = {
+				"userServiceClass" = "UserService"
+			}
+		};
 
 		/**
 		 * --------------------------------------------------------------------------
