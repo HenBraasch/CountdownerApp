@@ -6,10 +6,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>Welcome to Coldbox!</title>
+	<title>Welcome to Countdowner!</title>
 
-	<meta name="description" content="ColdBox Application Template">
-    <meta name="author" content="Ortus Solutions, Corp">
+	<meta name="description" content="A small event countdown app">
+    <meta name="author" content="Hendrik Braasch">
 
 	<!---Base URL --->
 	<base href="#event.getHTMLBaseURL()#" />
@@ -23,8 +23,14 @@
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
 		<!---Brand --->
 		<a class="navbar-brand mb-0" href="#event.buildLink('')#">
-			<strong><i class="fa fa-home"></i> Home</strong>
+			<strong><i class="fa fa-home"></i> Countdowner</strong>
 		</a>
+		<cfif auth().isLoggedIn()>
+			<form class="nav-item" method="POST" action="#event.buildLink("sessions.delete")#">
+				<input hidden name="_method" value="DELETE">
+				<button type="submit">Logout</button>
+			</form>
+		</cfif>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="##navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -51,9 +57,15 @@
 			</ul>
 		</div>
 	</nav> <!---end navbar --->
+	#getInstance( "messageBox@cbMessageBox" ).renderit()#
 
-	<!---Container And Views --->
-	<div class="container">#renderView()#</div>
+	<cfif !auth().isLoggedIn()>
+		<!---Container And Views --->
+	<div class="container">#renderView( )#</div>
+	<cfelse>
+		<h5>You are logged in as #auth().getUser().getUsername()#</h5>
+	</cfif>
+	
 
 	<footer class="border-top py-3 mt-5">
 		<div class="container">
@@ -61,8 +73,8 @@
 				<a href="##"><i class="fas fa-arrow-up"></i> Back to top</a>
 			</p>
 			<p>
-				<a href="https://github.com/ColdBox/coldbox-platform/stargazers">ColdBox Platform</a> is a copyright-trademark software by
-				<a href="https://www.ortussolutions.com">Ortus Solutions, Corp</a>
+				<a href="https://github.com/HenBraasch/Countdowner">Countdowner </a> is a copyright-trademark software by
+				<a href="mailto:'hendrik@braasch.co.nz'">Hendrik Braasch</a>
 			</p>
 			<p>
 				Design thanks to
