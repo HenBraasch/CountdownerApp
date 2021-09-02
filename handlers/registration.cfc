@@ -7,18 +7,17 @@ component{
 	property name="userService" inject="UserService";
 	property name="messageBox"  inject="messageBox@cbmessagebox";
 
-	// REST Allowed HTTP Methods Ex: this.allowedMethods = {delete='POST,DELETE',index='GET'}
-	this.allowedMethods = {};
+	this.allowedMethods = {new='GET',create='POST'};
 
 	/**
-	 * new
+	 * Displays the registration form
 	 */
 	function new( event, rc, prc ){
 		event.setView( "registration/new" );
 	}
 
 	/**
-	 * create
+	 * Create a new user
 	 */
 	function create( event, rc, prc ){
 		/* Get a new instance of the user class and populate the fields with information from the rc scope */
