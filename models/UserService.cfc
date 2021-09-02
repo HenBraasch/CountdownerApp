@@ -62,7 +62,7 @@ component singleton accessors="true"{
 	 * 
 	 * @return The created id of the user
 	 */
-	function create( required user ){
+	user function create( required user ){
 		
 		queryExecute(
 			" INSERT INTO `users` ( `email`, `username`, `password` )
@@ -78,6 +78,8 @@ component singleton accessors="true"{
 		);
 	
 		arguments.user.setID( local.result.generatedKey );
+
+		return user;
 	}
 
 
