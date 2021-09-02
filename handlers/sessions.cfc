@@ -20,7 +20,7 @@ component{
 	function create( event, rc, prc ){
 		try{
 			auth.authenticate( rc.username, rc.password );
-			return relocate( uri= "/" );
+			return relocate( uri= "/Countdowner/dist/index.html" );
 		} catch ( InvalidCredentials e) {
 			messagebox.warn( e.message );
 			return relocate( uri = "/login" );
