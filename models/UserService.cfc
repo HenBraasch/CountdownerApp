@@ -58,28 +58,26 @@ component singleton accessors="true"{
 	/**
 	 * Create a new user
 	 *
-	 * @email 
-	 * @username 
-	 * @password 
+	 * @user 
 	 * 
 	 * @return The created id of the user
 	 */
-	numeric function create( required string email, required string username, required string password ){
+	function create( required user ){
 		
 		queryExecute(
 			" INSERT INTO `users` ( `email`, `username`, `password` )
 			  VALUES ( ?, ?, ?) ",
 			  [
-				  arguments.email,
-				  arguments.username,
-				  bcrypt.hashPassword( arguments.password )
+				  arguments.user.getEmail(),
+				  arguments.user.getUsername(),
+				  bcrypt.hashPassword( arguments.user.getPassword() )
 			  ],
 			  {
 				  result: 'local.result'
 			  }
 		);
-
-		return local.result.generatedKey;
+	
+		arguments.user.setID( local.result.generatedKey );
 	}
 
 
