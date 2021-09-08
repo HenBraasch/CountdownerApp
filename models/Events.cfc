@@ -17,8 +17,9 @@ component accessors="true"{
 	/**
 	 * getEventData
 	 */
-	array function getEventData(){
+	array function getEventData(string userId = 1){
 		query = qb.from('event')
+				  .where("user","=", { value = arguments.userId, cfsqltype = "CF_SQL_VARCHAR"} )
 				  .get();
 		return query;
 	}
