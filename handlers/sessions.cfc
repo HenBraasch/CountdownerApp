@@ -33,7 +33,7 @@ component{
 	function delete( event, rc, prc ){
 		auth.logout();
 		messagebox.info( "See you soon!" );
-		return relocate( uri= "/" );
+		return "http://127.0.0.1:64450/";
 	}
 
 
