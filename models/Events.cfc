@@ -15,11 +15,20 @@ component accessors="true"{
 	}
 
 	/**
-	 * getEventData
+	 * getEventData by userid
 	 */
 	array function getEventData(string userId = 1){
 		query = qb.from('event')
 				  .where("user","=", { value = arguments.userId, cfsqltype = "CF_SQL_VARCHAR"} )
+				  .get();
+		return query;
+	}
+
+	/**
+	 * getEventData
+	 */
+	array function listEventData(){
+		query = qb.from('event')
 				  .get();
 		return query;
 	}
@@ -32,10 +41,11 @@ component accessors="true"{
 	function saveEventData( eventData ){
 		qb.from('event')
 			.insert({
-				"title" = {value = eventData.title, cfsqltype = "CF_SQL_VARCHAR"},
-				"date" = {value = eventData.date, cfsqltype = "CF_SQL_DATE"},
-				"picture_url" = {value = eventData.picture_url, cfsqltype = "CF_SQL_VARCHAR"},
-				"created_at" = {value = now(), cfsqltype = "CF_SQL_TIMESTAMP"}
+				"title" 		= {value = arguments.eventData.title, cfsqltype = "CF_SQL_VARCHAR"},
+				"date" 			= {value = arguments.eventData.date, cfsqltype = "CF_SQL_DATE"},
+				"picture_url"	= {value = arguments.eventData.picture_url, cfsqltype = "CF_SQL_VARCHAR"},
+				"created_at" 	= {value = now(), cfsqltype = "CF_SQL_TIMESTAMP"},
+				"user" 			= {value = arguments.eventData.user, cfsqltype = "CF_SQL_INTEGER"}
 			})
 	}
 
@@ -47,9 +57,9 @@ component accessors="true"{
 		qb.from('event')
 			.whereId( eventData.id )
 			.update({
-				"title" = {value = eventData.title, cfsqltype = "CF_SQL_VARCHAR"},
-				"date"  = {value = eventData.date, cfsqltype = "CF_SQL_DATE"},
-				"modified_at"= {value = now(), cfsqltype = "CF_SQL_TIMESTAMP"}
+				"title" 		= {value = eventData.title, cfsqltype = "CF_SQL_VARCHAR"},
+				"date"  		= {value = eventData.date, cfsqltype = "CF_SQL_DATE"},
+				"modified_at"	= {value = now(), cfsqltype = "CF_SQL_TIMESTAMP"}
 			})
 	}
 

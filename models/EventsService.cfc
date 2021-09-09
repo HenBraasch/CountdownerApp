@@ -29,19 +29,20 @@ component singleton accessors="true"{
 	}
 
 	/**
-	 * list
+	 * list all events
 	 */
 	function list(){
 
-		var events = eventDao.getEventData();
+		var events = eventDao.listEventData();
 		return events;
 	}
 
 	/**
-	 * get
+	 * get events by user
 	 */
-	function get(){
-
+	function get(string userid){
+		var events = eventDao.getEventData(arguments.userid);
+		return events;
 	}
 	
 	function update( eventData ){

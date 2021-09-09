@@ -6,6 +6,7 @@ component extends="coldbox.system.EventHandler"{
 	
 	// DI 
 	property name="eventService" inject="EventsService";
+	property name="auth" inject="authenticationService@cbauth";
 
 	// HTTP Method Security
 	this.allowedMethods = {
@@ -29,7 +30,9 @@ component extends="coldbox.system.EventHandler"{
 	 * Display a list of events
 	 */
 	function index( event, rc, prc ){
-		return eventService.list();
+		var userid = auth.getUserId();
+		return eventService.get(userid)
+		//return eventService.list();
 	}
 
 	/**
@@ -43,8 +46,9 @@ component extends="coldbox.system.EventHandler"{
 	 * Create a events
 	 */
 	function create( event, rc, prc ){
-		var status_message = "Created a new event";
-
+		var status_message 	= "Created a new event";
+		rc.user 			= auth.getUserId();
+		
 		try {
 			eventService.save( rc );
 		} catch (any e) {
