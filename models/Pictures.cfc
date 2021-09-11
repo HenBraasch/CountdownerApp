@@ -1,5 +1,5 @@
 /**
- * I model a pictures
+ * I model a picture
  */
 component accessors="true"{
 
